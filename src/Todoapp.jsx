@@ -87,21 +87,22 @@ const Todoapp = () => {
         <h1 className="p-4 text-lg">Things to do</h1>
 
         <div className="flex flex-col ">
-          {todolist.map((data, index) => {
-            return (
-              <>
-                {data && (
-                  <Todorow
-                    check={false}
-                    key={index}
-                    data={data}
-                    todochnagefun={handletodolist}
-                    removefun={handleremovedatatodo}
-                  />
-                )}
-              </>
-            );
-          })}
+          {todolist.length > 0 &&
+            todolist.map((data, index) => {
+              return (
+                <>
+                  {data && (
+                    <Todorow
+                      check={false}
+                      key={index}
+                      data={data}
+                      todochnagefun={handletodolist}
+                      removefun={handleremovedatatodo}
+                    />
+                  )}
+                </>
+              );
+            })}
         </div>
         {todo == false && (
           <button
@@ -144,22 +145,23 @@ const Todoapp = () => {
 
         <h1 className="p-4 text-lg">Things done</h1>
         <div className="flex flex-col ">
-          {donedata.map((data, index) => {
-            return (
-              <>
-                {data && (
-                  <Todorow
-                    key={index}
-                    data={data}
-                    check={true}
-                    // checked={false}
-                    todochnagefun={handeldonelist}
-                    removefun={handleremovedatadone}
-                  />
-                )}
-              </>
-            );
-          })}
+          {donedata.length > 0 &&
+            donedata.map((data, index) => {
+              return (
+                <>
+                  {data && (
+                    <Todorow
+                      key={index}
+                      data={data}
+                      check={true}
+                      // checked={false}
+                      todochnagefun={handeldonelist}
+                      removefun={handleremovedatadone}
+                    />
+                  )}
+                </>
+              );
+            })}
         </div>
       </div>
     </>
