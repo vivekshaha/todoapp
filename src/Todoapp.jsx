@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Todorow from "./todorow";
+import Todorow from "./Todorow";
 
 const Todoapp = () => {
   const a = localStorage.getItem("todo");
