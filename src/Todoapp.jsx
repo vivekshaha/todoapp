@@ -11,14 +11,18 @@ const Todoapp = () => {
   const [todolist, setTodoList] = useState(data1);
   const [donedata, setdonedata] = useState(data2);
 
+  const removenull = (arr) => {
+    return arr.filter((value) => value != null);
+  };
+
   useEffect(() => {
-    const data = todolist.filter((value) => value != null);
+    const data = removenull(todolist);
 
     const newdata = JSON.stringify(data);
     localStorage.setItem("todo", newdata);
   }, [todolist]);
   useEffect(() => {
-    const data = donedata.filter((value) => value != null);
+    const data = removenull(donedata);
 
     const newdata = JSON.stringify(data);
     localStorage.setItem("done", newdata);
@@ -48,7 +52,7 @@ const Todoapp = () => {
     setdonedata(newdonedata);
     // console.log("index:", index);
     delete newdatalist[index];
-    setTodoList(newdatalist);
+    setTodoList(removenull(newdatalist));
   };
   const handeldonelist = (data) => {
     const newdatalist = [...donedata];
@@ -56,7 +60,7 @@ const Todoapp = () => {
     delete newdatalist[index];
     const newdonedata = [...todolist];
     newdonedata.push(data);
-    setdonedata(newdatalist);
+    setdonedata(removenull(newdatalist));
     // console.log("index:", index);
     setTodoList(newdonedata);
   };
@@ -65,14 +69,14 @@ const Todoapp = () => {
     const index = newdatalist.indexOf(data);
     // console.log("index:", index);
     delete newdatalist[index];
-    setTodoList(newdatalist);
+    setTodoList(removenull(newdatalist));
   };
   const handleremovedatadone = (data) => {
     const newdatalist = [...donedata];
     const index = newdatalist.indexOf(data);
     // console.log("index:", index);
     delete newdatalist[index];
-    setdonedata(newdatalist);
+    setdonedata(removenull(newdatalist));
   };
 
   return (
