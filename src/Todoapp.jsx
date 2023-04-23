@@ -16,15 +16,15 @@ const Todoapp = () => {
   };
 
   useEffect(() => {
-    const data = removenull(todolist);
+    // const data = removenull(todolist);
 
-    const newdata = JSON.stringify(data);
+    const newdata = JSON.stringify(todolist);
     localStorage.setItem("todo", newdata);
   }, [todolist]);
   useEffect(() => {
-    const data = removenull(donedata);
+    // const data = removenull(donedata);
 
-    const newdata = JSON.stringify(data);
+    const newdata = JSON.stringify(donedata);
     localStorage.setItem("done", newdata);
   }, [donedata]);
 
@@ -37,8 +37,8 @@ const Todoapp = () => {
   };
   const handleList = () => {
     // console.log("vluse inside tododdat:", tododata);
-    const newTodolist = [...todolist];
-    newTodolist.push(tododata);
+    const newTodolist = [...todolist, tododata];
+    // newTodolist.push(tododata);
     setTodoList(newTodolist);
     // console.log(todolist);
     setTodo(!todo);
@@ -47,8 +47,8 @@ const Todoapp = () => {
   const handletodolist = (data) => {
     const newdatalist = [...todolist];
     const index = newdatalist.indexOf(data);
-    const newdonedata = [...donedata];
-    newdonedata.push(data);
+    const newdonedata = [...donedata, data];
+    // newdonedata.push(data);
     setdonedata(newdonedata);
     // console.log("index:", index);
     delete newdatalist[index];
@@ -58,8 +58,8 @@ const Todoapp = () => {
     const newdatalist = [...donedata];
     const index = newdatalist.indexOf(data);
     delete newdatalist[index];
-    const newdonedata = [...todolist];
-    newdonedata.push(data);
+    const newdonedata = [...todolist, data];
+    // newdonedata.push(data);
     setdonedata(removenull(newdatalist));
     // console.log("index:", index);
     setTodoList(newdonedata);
@@ -87,22 +87,21 @@ const Todoapp = () => {
         <h1 className="p-4 text-lg">Things to do</h1>
 
         <div className="flex flex-col ">
-          {todolist.length > 0 &&
-            todolist.map((data, index) => {
-              return (
-                <>
-                  {data && (
-                    <Todorow
-                      check={false}
-                      key={index}
-                      data={data}
-                      todochnagefun={handletodolist}
-                      removefun={handleremovedatatodo}
-                    />
-                  )}
-                </>
-              );
-            })}
+          {todolist.map((data, index) => {
+            return (
+              <>
+                {data && (
+                  <Todorow
+                    check={false}
+                    key={index}
+                    data={data}
+                    todochnagefun={handletodolist}
+                    removefun={handleremovedatatodo}
+                  />
+                )}
+              </>
+            );
+          })}
         </div>
         {todo == false && (
           <button
@@ -145,23 +144,22 @@ const Todoapp = () => {
 
         <h1 className="p-4 text-lg">Things done</h1>
         <div className="flex flex-col ">
-          {donedata.length > 0 &&
-            donedata.map((data, index) => {
-              return (
-                <>
-                  {data && (
-                    <Todorow
-                      key={index}
-                      data={data}
-                      check={true}
-                      // checked={false}
-                      todochnagefun={handeldonelist}
-                      removefun={handleremovedatadone}
-                    />
-                  )}
-                </>
-              );
-            })}
+          {donedata.map((data, index) => {
+            return (
+              <>
+                {data && (
+                  <Todorow
+                    key={index}
+                    data={data}
+                    check={true}
+                    // checked={false}
+                    todochnagefun={handeldonelist}
+                    removefun={handleremovedatadone}
+                  />
+                )}
+              </>
+            );
+          })}
         </div>
       </div>
     </>
