@@ -4,8 +4,8 @@ import Todorow from "./Todorow";
 const Todoapp = () => {
   const a = localStorage.getItem("todo");
   const b = localStorage.getItem("done");
-  const data1 = JSON.parse(a);
-  const data2 = JSON.parse(b);
+  const data1 = JSON.parse(a) || [];
+  const data2 = JSON.parse(b) || [];
   const [todo, setTodo] = useState(false);
   const [tododata, settodoData] = useState("");
   const [todolist, setTodoList] = useState(data1);
@@ -14,7 +14,14 @@ const Todoapp = () => {
   const removenull = (arr) => {
     return arr.filter((value) => value != null);
   };
-
+  // if (data1.lenght == 0 && data2.lenght) {
+  //   useEffect(() => {
+  //     const d = [];
+  //     const f = JSON.stringify(d);
+  //     localStorage.setItem("todo", f);
+  //     localStorage.setItem("done", f);
+  //   }, []);
+  // }
   useEffect(() => {
     // const data = removenull(todolist);
 
